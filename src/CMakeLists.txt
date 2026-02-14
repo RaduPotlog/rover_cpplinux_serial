@@ -11,6 +11,13 @@ add_library(CppLinuxSerial::CppLinuxSerial ALIAS CppLinuxSerial)
 
 target_compile_features(CppLinuxSerial PRIVATE cxx_std_14)
 
+set_target_properties(CppLinuxSerial PROPERTIES
+    POSITION_INDEPENDENT_CODE ON
+    LINK_FLAGS "-Wl,--no-undefined"
+)
+
+target_link_options(CppLinuxSerial PRIVATE -Wl,--disable-new-dtags)
+
 target_sources(CppLinuxSerial
   PRIVATE 
     SerialPort.cpp)
